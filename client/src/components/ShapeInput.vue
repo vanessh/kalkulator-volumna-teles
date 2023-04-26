@@ -1,17 +1,16 @@
-<!-- Komponenta za izbiro telesa.-->
 <template>
   <div>
-    <h1>Insert Shape</h1>
+    <h1>Izberi lik</h1>
     <label>
-      Shape Type:
+      Vrste likov
       <select v-model="shapeType">
-        <option value="triangle">Triangle</option>
-        <option value="circle">Circle</option>
-        <option value="rectangle">Rectangle</option>
+        <option value="triangle">Trikotnik</option>
+        <option value="circle">Krog</option>
+        <option value="rectangle">Pravokotnik</option>
       </select>
     </label>
     <br>
-    <component :is="currentShapeComponent"></component>
+    <component :is="currentShapeComponent" :shapeType="shapeType"></component>
   </div>
 </template>
 
@@ -22,14 +21,6 @@ import RectangleInput from './RectangleInput.vue';
 
 export default {
   name: 'ShapeInput',
-  created() {
-    console.log("test created")
-  },
-  mounted() {
-    console.log("path",this.$route.path); // Access the path property of the route object
-    console.log("TEST");
-  },
-
   data() {
     return {
       shapeType: '',
@@ -39,10 +30,13 @@ export default {
     currentShapeComponent() {
       switch (this.shapeType) {
         case 'triangle':
+          console.log("Triangle");
           return 'TriangleInput';
         case 'circle':
+        console.log("Circle");
           return 'CircleInput';
         case 'rectangle':
+        console.log("Rectangle");
           return 'RectangleInput';
         default:
           return null;
