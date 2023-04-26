@@ -13,12 +13,13 @@ exports.create = (req, res) => {
         return;
     }
     console.log("LOG",req.body)
-const shape = {
-    type: req.body.type,
-    height: req.body.height,
-    a: req.body.a,
-    b: req.body.b,
-    radius: req.body.radius
+    
+    const shape = {
+      type: req.body.type,
+      height: req.body.height,
+      a: req.body.a,
+      b: req.body.b,
+      radius: req.body.radius
 };
 
 Shapes.create(shape)
