@@ -1,27 +1,18 @@
 <template>
-    <div>
-      <label for="base-input">Base:</label>
-      <label for="area-output">Area:</label>
-      <span id="area-output">{{ area }}</span>
-    </div>
-  </template>
-  
-  <script>
-  export default {
-    name: 'CalculatedData',
-    props: {
-      base: {
-        type: Number,
-        required: true,
-      },
-      height: {
-        type: Number,
-        required: true,
-      },
-      area: {
-        type: Number,
-        required: true,
-      },
-    }
-  };
-  </script>
+  <div>
+    <h2>Izračunani podatki:</h2>
+    <p>Oblika: {{ shapeData.type }}</p>
+    <p>Višina: {{ shapeData.height }}</p>
+    <p>Dolžina stranice: {{ shapeData.a }}</p>
+    <p>Obseg osnove: {{ shapeData.obseg }}</p>
+    <p>Ploščina osnove: {{ shapeData.povrsina }}</p>
+    <p>Volumen: {{ shapeData.volumen }}</p>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'CalculatedData',
+  props: ['shapeData']
+};
+</script>

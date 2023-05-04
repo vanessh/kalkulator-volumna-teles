@@ -11,6 +11,10 @@ const Shape = sequelize.define("shapes", {
         allowNull: false,
         autoIncrement: true
     },
+    set_name: {
+        type: Sequelize.STRING(15),
+        allowNull: false
+    },
     type: {
         type: Sequelize.STRING(15),
         allowNull: false

@@ -35,3 +35,4 @@ shranjuje. Shranjeni seti so vidni na posebni strani, kjer je mogoče:
 
 Če znaš lahko pripraviš stran v Vue.js. Sprejeli bomo stran tudi v kakšnem drugem SPA 
 frameworku ali v čistem JS. 
+

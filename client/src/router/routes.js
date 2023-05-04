@@ -3,6 +3,7 @@ import ShapeInput from '../components/ShapeInput.vue';
 import RectangleInput from '../components/RectangleInput.vue';
 import TriangleInput from '../components/TriangleInput.vue';
 import CircleInput from '../components/CircleInput.vue';
+import CalculatedData from '../components/CalculatedData.vue'
 
 const routes = [
   {
@@ -25,7 +26,14 @@ const routes = [
     name: 'Triangleinput',
     component: TriangleInput
     
+  },
+  {
+    path: '/calculated',
+    name: 'CalculatedData',
+    component: CalculatedData
+    
   }
+
 ];
 
 const router = createRouter({

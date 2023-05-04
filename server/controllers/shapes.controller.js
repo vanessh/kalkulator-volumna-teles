@@ -15,6 +15,7 @@ exports.create = (req, res) => {
     console.log("LOG",req.body)
     
     const shape = {
+      set_name: req.body.set_name,
       type: req.body.type,
       height: req.body.height,
       a: req.body.a,
