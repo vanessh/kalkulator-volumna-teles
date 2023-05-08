@@ -36,9 +36,9 @@ export default {
   },
   methods: {
     calculateTriangleData() {
-      const o = parseFloat(this.a) * 3; //Obseg osnovne ploskve
-      const p = (Math.pow(parseFloat(this.a), 2) * Math.sqrt(3)) / 4; //Površina osnovne ploskve
-      const V = p * (this.height); //Volumen
+      const o = parseFloat(this.a) * 3; // Obseg osnovne ploskve o = a * 3
+      const p = (Math.pow(parseFloat(this.a), 2) * Math.sqrt(3)) / 4; // Površina osnovne ploskve p = a^2 * koren(3) / 4
+      const V = p * (this.height); // Volumen
       const shapeData = {
         set_name: this.set_name,
         type: this.shapeType,

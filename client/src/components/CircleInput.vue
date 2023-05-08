@@ -36,9 +36,9 @@ export default {
   },
   methods: {
     calculateCircleData() {
-      const o = parseFloat(this.radius) * 3.14 * 2; //Obseg osnovne ploskve o = 2 * pi * r
-      const p = (Math.pow(parseFloat(this.radius), 2)) * 3.14 * 4; //Površina osnovne ploskve p = 4 * pi * r^2
-      const V = (4 * 3.14 * Math.pow(parseFloat(this.radius), 3) / 3); //Volumen V = 4 * pi * r^3 / 3
+      const o = parseFloat(this.radius) * 3.14 * 2; // Obseg osnovne ploskve o = 2 * pi * r
+      const p = (Math.pow(parseFloat(this.radius), 2)) * 3.14 ; // Površina osnovne ploskve p =  pi * r^2
+      const V = (3.14 * Math.pow(parseFloat(this.radius), 2) * parseFloat(this.height)); // Volumen V = pi * r^2 * h
       const shapeData = {
         set_name: this.set_name,
         type: this.shapeType,
