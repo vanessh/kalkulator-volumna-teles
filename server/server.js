@@ -1,36 +1,37 @@
-// To je glavna datoteka v projektu, ki vzpostavi strežnik in povezuje vse prejšnje datoteke skupaj.
-
-const express = require('express')
-const bodyParser = require('body-parser')
-const app = express()
+const express = require('express');
 const db = require("./models/index.js");
-const shapesRoutes = require("./routes/shapes.routes.js")
+
+
+const app = express();
+const cors = require('cors');
+const { shapesRoutes } = require("./routes/shapes.routes.js")(app);
+app.use('/api/shapes', cors(), shapesRoutes);
+
 
 app.use(express.json());
-app.use('/shapesApi', shapesRoutes);
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use('/api/shapes', shapesRoutes);
+app.use(cors({
+  origin: 'http://localhost:8081',
+  methods: ['GET', 'POST', 'PUT', 'DELETE']
+}));
 
-
-require("./routes/shapes.routes.js")(app)
+// Serve static files from the client/dist directory
+app.use('/static', express.static('client/dist'));
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
-})
+});
 
 app.listen(3000, () => {
   console.log('Server is listening on port 3000...')
-})
+});
 
 db.sequelize.sync()
-.then(() => {
+  .then(() => {
     console.log("Synced db.");
-})
-.catch((err) => {
+  })
+  .catch((err) => {
     console.log("Failed to sync db: " + err.message);
-})
+  });
 
-/*
-db.sequelize.sync({ force: true }).then(() => {
-  console.log("Drop and re-sync db.");
-});*/
+module.exports = app;

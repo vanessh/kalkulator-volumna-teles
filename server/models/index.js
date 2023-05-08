@@ -8,7 +8,7 @@ const Sequelize = require("sequelize");
 const sequelize = new Sequelize(dbConfig.database, dbConfig.username, dbConfig.password, {
     host: dbConfig.host,
     dialect: dbConfig.dialect,
-    operatorsAliases: false,
+    operatorsAliases: 0,
 });
 
 // Ustvarimo objekt db, ki bo vseboval definicije tabel.

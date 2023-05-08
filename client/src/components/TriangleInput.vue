@@ -27,7 +27,7 @@ export default {
   components: {
     CalculatedData
   },
-  props: ['shapeType'],
+  props: ['shapeType', 'set_name'],
   data() {
     return {
       height: null,
@@ -37,14 +37,15 @@ export default {
   methods: {
     calculateTriangleData() {
       const o = parseFloat(this.a) * 3; //Obseg osnovne ploskve
-      const O = (Math.pow(parseFloat(this.a), 2) * Math.sqrt(3)) / 4; //Površina osnovne ploskve
-      const V = O * (this.height); //Volumen
+      const p = (Math.pow(parseFloat(this.a), 2) * Math.sqrt(3)) / 4; //Površina osnovne ploskve
+      const V = p * (this.height); //Volumen
       const shapeData = {
+        set_name: this.set_name,
         type: this.shapeType,
         height: parseFloat(this.height),
         a: parseFloat(this.a),
         obseg: o,
-        povrsina: O,
+        povrsina: p,
         volumen: V
       };
       this.$emit('shape-calculated', shapeData)

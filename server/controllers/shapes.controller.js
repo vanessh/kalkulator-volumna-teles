@@ -3,58 +3,62 @@
 const db = require("../models/");
 const Shapes = db.shapes;
 const Op = db.Sequelize.Op;
+const { Shape } = require("../models/index.js");
 
-// Ustvarjanje in shranjevanje novega shape-a
 exports.create = (req, res) => {
-    if(!req.body.type || !req.body.height){
-        res.status(400).send({
-            message: "Content can not be empty!"
-        });
-        return;
-    }
-    console.log("LOG",req.body)
-    
-    const shape = {
-      set_name: req.body.set_name,
-      type: req.body.type,
-      height: req.body.height,
-      a: req.body.a,
-      b: req.body.b,
-      radius: req.body.radius
-};
-
-Shapes.create(shape)
-/*.then(data => {
-    res.send(data);*/
-    .then((createdShape) => {
-      res.status(200).send(createdShape);
-      console.log(req.body)
-
-})
-.catch(err => {
-    res.status(500).send({
-        message:
-        err.message || "Some error occcured while creating the Shape."
+  console.log(req.body); // Log the request body
+  if (!req.body.set_name || !req.body.type || !req.body.height) {
+    return res.status(400).send({
+      message: "set_name, type, and height are required fields"
     });
-});
+  }
+
+  try{
+  const shape = {
+    set_name: req.body.set_name,
+    type: req.body.type,
+    height: req.body.height,
+    a: req.body.a,
+    b: req.body.b,
+    radius: req.body.radius
+  };
+} catch(err){
+  console.log(err);
+  res.status(500).send('Internal Server Error');
+}
+
+  Shapes.create(shape)
+    .then(createdShape => {
+      res.status(200).send(createdShape);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message: err.message || "Some error occurred while creating the Shape."
+      });
+    });
 };
+
+
+
 
 // Pridobitev vseh teles iz baze
+// Pridobimo vse shape iz baze
 exports.findAll = (req, res) => {
-    const type = req.query.type;
-    var condition = type ? { type: { [Op.like]: `%${type}%` } } : null;
-  
-    Shapes.findAll({ where: condition })
-      .then(data => {
-        res.send(data);
-      })
-      .catch(err => {
-        res.status(500).send({
-          message:
-            err.message || "Some error occurred while retrieving tutorials."
-        });
+  const type = req.query.type;
+  var condition = type ? { type: { [Op.like]: `%${type}%` } } : null;
+
+  Shapes.findAll({ where: condition })
+    .then(data => {
+      res.send(data);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving tutorials."
       });
+    });
 };
+
 
 // Poiščemo določeno telo glede na id
 exports.findOne = (req, res) => {

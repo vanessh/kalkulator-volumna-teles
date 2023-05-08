@@ -15,7 +15,7 @@
       <input type="text" v-model="set_name" required>
     </label>
     <br>
-    <component :is="currentShapeComponent" :shapeType="shapeType"></component>
+    <component :is="currentShapeComponent" :shapeType="shapeType" :set_name="set_name"></component>
     <CalculatedData v-if="calculatedShapeData"></CalculatedData>
     <button class="btn btn-success" @click="saveParameters">Save parameters</button>
   </div>
@@ -56,10 +56,11 @@ export default {
       this.parameters.a = parseInt(this.a);
       this.parameters.b = parseInt(this.b);
       this.parameters.radius = parseFloat(this.radius);
+      console.log(this.set_name)
 
-      axios.post('/api/parameters', this.parameters)
+      axios.post('http://localhost:3000/api/shapes', this.parameters)
           .then(response => {
-            console.log(response.data);
+            console.log("Test: " + response.data);
           })
           .catch(error => {
             console.log(error);
