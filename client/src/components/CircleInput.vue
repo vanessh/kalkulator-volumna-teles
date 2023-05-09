@@ -10,7 +10,7 @@
       <br>
       <label>
         Polmer (r):
-        <input type="number" v-model.number="a" min="0" max="200" :class="{'is-invalid': !validateRadius}" required>
+        <input type="number" v-model.number="radius" min="0" max="200" :class="{'is-invalid': !validateRadius}" required>
         <div class="invalid-feedback" v-if="!validateRadius">Polmer mora biti med 0 in 200.</div>
       </label>
       <br>

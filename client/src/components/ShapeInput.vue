@@ -48,6 +48,7 @@ export default {
   methods: {
     handleShapeCalculated(data){
       this.calculatedShapeData = data;
+      console.log("Test", data);
     },
     saveParameters() {
       this.parameters.set_name = this.set_name;
@@ -91,7 +92,7 @@ export default {
     TriangleInput,
     CircleInput,
     RectangleInput,
-    CalculatedData
+    CalculatedData,
   },
 };
 </script>
